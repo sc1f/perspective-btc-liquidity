@@ -1,11 +1,6 @@
 # Perspective BTC Liquidity Dashboard
 
-Using [Perspective](https://github.com/finos/perspective), this dashboard interactively visualizes and analyzes the live order book for BTCUSD perpetual swaps from the following exchanges:
-
-- FTX
-- Binance
-- BitMex
-- Bitfinex
+Using [Perspective](https://github.com/finos/perspective), this dashboard interactively visualizes and analyzes the live order book for BTC-PERP on [FTX](https://docs.ftx.com/#overview). Using live L2 order book data, we can construct a heatmap recreation of the live streaming order book and see as bids/asks are placed and cancelled, and see where local liquidity is on a per-tick timeframe as well as market dislocations.
 
 ### What is Perspective?
 
