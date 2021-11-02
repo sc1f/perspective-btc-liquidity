@@ -239,16 +239,7 @@ perspective-viewer {
         #09fa01
     ) !important;
 
-    --d3fc-full--gradient: linear-gradient(
-        #FA3E00,
-        #fa6400,
-        #DB6C00,
-        #f5c801,
-        #F5E000,
-        #95ff0b,
-        #66ff00,
-        #09fa01
-    ) !important;
+    --d3fc-full--gradient: linear-gradient(to bottom, #fa3e00 0%, #b50303 40%, #441500 50%,#0e4c00 50%,#1b9100 60%, #09fa01 100%) !important;
 
     --d3fc-series: #09fa01 !important;
     --d3fc-series-1: #FA3E00 !important;

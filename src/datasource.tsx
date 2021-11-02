@@ -85,7 +85,7 @@ export class FTXDataSource extends BaseDataSource {
 
         // Upon subscribing, you will receive one snapshot of the orderbook
         // (partial) with a data field containing: bids, asks, checksum, time
-        if (message_type === "partial" || message_type === "update") {
+        if (message_type === "update") {
             const book = message.data;
             const parsed = [];
 
@@ -104,6 +104,8 @@ export class FTXDataSource extends BaseDataSource {
             console.debug("[FTX] successfully subscribed!");
         } else if (message_type === "unsubscribed") {
             console.debug("[FTX] successfully unsubscribed!");
+        } else if (message_type === "partial") {
+            return;
         } else {
             throw new Error(`[FTX] Unknown message received: ${message}`);
         }

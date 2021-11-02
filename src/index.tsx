@@ -36,7 +36,7 @@ declare global {
 const worker = perspective.shared_worker();
 
 const getData = async (): Promise<Record<string, Record<string, any>>> => {
-    const ftx_table = await worker.table(SCHEMA, {limit: 10000});
+    const ftx_table = await worker.table(SCHEMA, {limit: 30000});
 
     return {
         ftx: {
@@ -45,6 +45,8 @@ const getData = async (): Promise<Record<string, Record<string, any>>> => {
         },
     };
 };
+
+let DATASOURCE: Record<string, any>;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Workspace = (): React.ReactElement => {
@@ -67,6 +69,7 @@ const Workspace = (): React.ReactElement => {
             getData().then((data) => {
                 for (const name in data) {
                     workspace.current.addTable(name, data[name].table);
+                    DATASOURCE = data[name].datasource;
                 }
 
                 workspace.current.addEventListener(
@@ -98,9 +101,25 @@ const Footer = (): React.ReactElement => {
         workspace.restore(default_config);
     };
 
+    const unsubscribe = () => {
+        DATASOURCE.unsubscribe();
+        console.log("finished unsubscribe!");
+    };
+
+    const subscribe = () => {
+        DATASOURCE.subscribe();
+        console.log("finished unsubscribe!");
+    };
+
     return (
         <div className="footer">
             <div className="footer-meta">
+                <button id="unsubscribe" onClick={unsubscribe}>
+                    Unsubscribe
+                </button>
+                <button id="unsubscribe" onClick={subscribe}>
+                    Subscribe
+                </button>
                 <a
                     href="https://github.com/sc1f/perspective-btc-liquidity"
                     target="blank"
