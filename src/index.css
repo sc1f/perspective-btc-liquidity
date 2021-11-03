@@ -1,256 +1,271 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
-#main, .modal-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+#main,
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer {
-    background: rgb(0, 0, 0) !important;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    align-content: space-between;
-    align-items: center;
-    justify-content: space-between;
-    height: 30px;
-    font-family: "Open Sans";
-    padding: 10px;
+  background: rgb(0, 0, 0) !important;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  font-family: "Open Sans";
+  padding: 10px;
 }
 
 .footer path {
-    stroke: rgb(08, 194, 28);
-    fill: rgb(08, 194, 28);
-    transition: stroke 0.5s, fill 0.5s;
+  stroke: rgb(08, 194, 28);
+  fill: rgb(08, 194, 28);
+  transition: stroke 0.5s, fill 0.5s;
 }
 
 .footer-meta {
-    display: flex;
-    font-size: 12px;
-    align-items: center;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
 }
 
-.footer-meta a:hover, .footer-meta a:hover:visited {
-    color: white;
+.footer-meta a:hover,
+.footer-meta a:hover:visited {
+  color: white;
 }
 
-.footer-meta a, .footer-meta a:visited {
-    color: rgb(08, 194, 28);
-    transition: color 0.5s;
+.footer-meta a,
+.footer-meta a:visited {
+  color: rgb(08, 194, 28);
+  transition: color 0.5s;
 }
 
 #github-link {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-p.footer-link {
-    margin: 5px !important;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .footer #github-link:hover path {
-    stroke: white;
-    fill: white;
+  stroke: white;
+  fill: white;
 }
 
 .footer-meta p {
-    color: white;
-    margin-left: 10px;
-    margin-right: 10px;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #reset_config {
-    background: transparent;
-    border: 1px solid rgb(108, 194, 28);
-    color: rgb(08, 194, 28);
-    font-family: 'Open Sans' !important;
-    font-size: 11px;
-    padding: 10px;
-    cursor: pointer;
+  background: transparent;
+  border: 1px solid rgb(108, 194, 28);
+  color: rgb(08, 194, 28);
+  font-family: "Open Sans" !important;
+  font-size: 11px;
+  padding: 10px;
+  cursor: pointer;
 }
 
 #reset_config:hover {
-    /* background: #eaeaea; */
-    border-color: rgb(123, 255, 0);
-    color: rgb(123, 255, 0);
+  /* background: #eaeaea; */
+  border-color: rgb(123, 255, 0);
+  color: rgb(123, 255, 0);
 }
 
 custom-datagrid regular-table {
-    font-family: "Open Sans";
+  font-family: "Open Sans";
 }
 
 custom-datagrid regular-table td {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 custom-datagrid regular-table tbody tr {
-    height: 50px !important;
+  height: 50px !important;
 }
 
-perspective-viewer.workspace-master-widget custom-datagrid regular-table tbody tr:first-of-type {
-    height: auto !important;
+perspective-viewer.workspace-master-widget
+  custom-datagrid
+  regular-table
+  tbody
+  tr:first-of-type {
+  height: auto !important;
 }
 
 #progress {
-    background: rgb(0, 0, 0);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 100000;
+  background: rgb(0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
 }
 
 .slider {
-    position: absolute;
-    width: 250px;
-    height: 10px;
-    overflow-x: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -125px;
-    margin-top: -5px;
-    z-index: 1000000;
+  position: absolute;
+  width: 250px;
+  height: 10px;
+  overflow-x: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -125px;
+  margin-top: -5px;
+  z-index: 1000000;
 }
 
 .line {
-    position: absolute;
-    opacity: 0.4;
-    background: rgb(73, 73, 73);
-    width: 150%;
-    height: 5px;
+  position: absolute;
+  opacity: 0.4;
+  background: rgb(73, 73, 73);
+  width: 150%;
+  height: 5px;
 }
 
 .subline {
-    position: absolute;
-    background: rgb(107, 107, 107);
-    height: 5px;
+  position: absolute;
+  background: rgb(107, 107, 107);
+  height: 5px;
 }
 
 .inc {
-    animation: increase 2s infinite;
+  animation: increase 2s infinite;
 }
 
 .dec {
-    animation: decrease 2s 0.5s infinite;
+  animation: decrease 2s 0.5s infinite;
 }
 
 @keyframes increase {
-    from {
-        left: -5%;
-        width: 5%;
-    }
+  from {
+    left: -5%;
+    width: 5%;
+  }
 
-    to {
-        left: 130%;
-        width: 100%;
-    }
+  to {
+    left: 130%;
+    width: 100%;
+  }
 }
 
 @keyframes decrease {
-    from {
-        left: -80%;
-        width: 80%;
-    }
+  from {
+    left: -80%;
+    width: 80%;
+  }
 
-    to {
-        left: 110%;
-        width: 10%;
-    }
+  to {
+    left: 110%;
+    width: 10%;
+  }
 }
 
-perspective-viewer.workspace-detail-widget regular-table table tbody tr td, 
+perspective-viewer.workspace-detail-widget regular-table table tbody tr td,
 perspective-viewer.workspace-detail-widget regular-table table tbody tr th {
-    border-top-color: var(--pp-color-1) !important;
-    /* border-top-color: rgb(173, 228, 246) !important; */
+  border-top-color: var(--pp-color-1) !important;
+  /* border-top-color: rgb(173, 228, 246) !important; */
 }
 
 perspective-viewer.workspace-detail-widget regular-table table tbody th:empty {
-    background: linear-gradient(to right, transparent 9px, var(--pp-color-1) 10px, transparent 11px) !important;
-    background-repeat: no-repeat;
-    background-position: 0px -10px;
+  background: linear-gradient(
+    to right,
+    transparent 9px,
+    var(--pp-color-1) 10px,
+    transparent 11px
+  ) !important;
+  background-repeat: no-repeat;
+  background-position: 0px -10px;
 }
 
 .is-timestamp:not(.psp-is-width-override) {
-    max-width: 120px !important;
-    min-width: 120px !important;
-    width: 120px !important;
+  max-width: 120px !important;
+  min-width: 120px !important;
+  width: 120px !important;
 }
 
 td canvas {
-    margin-bottom: -4px;
+  margin-bottom: -4px;
 }
 
 td.penguin-canvas {
-    padding: 0px;
+  padding: 0px;
 }
 
 td.is-timestamp:not(.psp-is-width-override) {
-    white-space: break-spaces;
+  white-space: break-spaces;
 }
 
 regular-table {
-    --pp-color-1: rgb(9, 33, 50);
-    --pp-color-2: rgb(66, 182, 230);
-    --rt-pos-cell--color: rgb(66, 182, 230) !important;
+  --pp-color-1: rgb(9, 33, 50);
+  --pp-color-2: rgb(66, 182, 230);
+  --rt-pos-cell--color: rgb(66, 182, 230) !important;
 }
 
-regular-table td, th {
-    --rt-hover--border-color: var(--pp-color-1) !important;
+regular-table td,
+th {
+  --rt-hover--border-color: var(--pp-color-1) !important;
 }
 
 perspective-viewer.workspace-detail-widget {
-    --inactive--color: rgb(19, 33, 50) !important;
-    --plugin--border: 1px solid rgb(61, 61, 61) !important;
-    --plugin--background: rgb(0, 0, 0) !important;
-    background: rgb(0, 0, 0) !important;
+  --inactive--color: rgb(19, 33, 50) !important;
+  --plugin--border: 1px solid rgb(61, 61, 61) !important;
+  --plugin--background: rgb(0, 0, 0) !important;
+  background: rgb(0, 0, 0) !important;
 }
 
 perspective-viewer {
-    font-family: 'Open Sans' !important;
-    --d3fc-positive--gradient: linear-gradient(
-        #FA3E00,
-        #fa6400,
-        #DB6C00,
-        #f5c801,
-        #F5E000,
-        #95ff0b,
-        #66ff00,
-        #09fa01
-    ) !important;
+  font-family: "Open Sans" !important;
+  --d3fc-positive--gradient: linear-gradient(
+    to bottom,
+    #ff0000 0%,
+    #880000 45%,
+    #310000 50%,
+    #032700 50%,
+    #0a9400 55%,
+    #10ff00 100%
+  ) !important;
 
-    --d3fc-negative--gradient: linear-gradient(
-        #FA3E00,
-        #fa6400,
-        #DB6C00,
-        #f5c801,
-        #F5E000,
-        #95ff0b,
-        #66ff00,
-        #09fa01
-    ) !important;
+  --d3fc-negative--gradient: linear-gradient(
+    to bottom,
+    #ff0000 0%,
+    #880000 45%,
+    #310000 50%,
+    #032700 50%,
+    #0a9400 55%,
+    #10ff00 100%
+  ) !important;
 
-    --d3fc-full--gradient: linear-gradient(to bottom, #fa3e00 0%, #b50303 40%, #441500 50%,#0e4c00 50%,#1b9100 60%, #09fa01 100%) !important;
+  --d3fc-full--gradient: linear-gradient(
+    to right,
+    #ff0000 0%,
+    #880000 45%,
+    #310000 50%,
+    #032700 50%,
+    #0a9400 55%,
+    #10ff00 100%
+  ) !important;
 
-    --d3fc-series: #09fa01 !important;
-    --d3fc-series-1: #FA3E00 !important;
-    --d3fc-series-2:  #09fa01!important;
+  --d3fc-series: #09fa01 !important;
+  --d3fc-series-1: #fa3e00 !important;
+  --d3fc-series-2: #09fa01 !important;
 
-    --d3fc-gridline--color: #000 !important;
+  --d3fc-gridline--color: #000 !important;
 }
 
 perspective-workspace {
-    background: rgb(0, 0, 0) !important;
-    --workspace-tabbar--background-color: rgb(0, 0, 0) !important;
-    --workspace-tabbar--border-color: rgb(61, 61, 61) !important;
-    --workspace-tabbar--border: 1px solid rgb(61, 61, 61) !important;
+  background: rgb(0, 0, 0) !important;
+  --workspace-tabbar--background-color: rgb(0, 0, 0) !important;
+  --workspace-tabbar--border-color: rgb(61, 61, 61) !important;
+  --workspace-tabbar--border: 1px solid rgb(61, 61, 61) !important;
 }

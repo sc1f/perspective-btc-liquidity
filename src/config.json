@@ -19,18 +19,18 @@
     "orders": {
       "plugin": "Custom Heatmap",
       "plugin_config": {},
-      "settings": false,
+      "settings": true,
       "row_pivots": ["timestamp_seconds"],
       "column_pivots": ["bucketed price"],
-      "columns": ["size/side"],
-      "filter": [],
+      "columns": ["size (scaled)"],
+      "filter": [["size", ">", 0]],
       "sort": [],
       "expressions": [
         "// timestamp_seconds\nbucket(\"timestamp\", 's')",
         "// bucketed price\nbucket(\"price\", 10)",
-        "// size/side\n\"side\" == 'ask' ? \"size\" : -\"size\""
+        "// size (scaled)\nvar scale := 100; // get more differentiation between size @ each level\n\"side\" == 'bid' ? \"size\" : -\"size\""
       ],
-      "aggregates": { "numeric_side": "last", "price": "count" },
+      "aggregates": { "numeric_side": "last", "price": "count", "size": "last"},
       "master": false,
       "name": "Order Book (per-second)",
       "table": "ftx",

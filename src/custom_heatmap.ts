@@ -39,5 +39,3 @@ function create_custom(name: string) {
 }
 
 create_custom("heatmap");
-create_custom("yline");
-create_custom("ybar");

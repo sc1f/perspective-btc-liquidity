@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {useEffect, useRef} from "react";
-import perspective, {Table} from "@finos/perspective";
+import perspective from "@finos/perspective";
 import chroma from "chroma-js";
 
 import "@finos/perspective-workspace";
@@ -35,21 +35,10 @@ declare global {
 
 const worker = perspective.shared_worker();
 
-const getData = async (): Promise<Record<string, Record<string, any>>> => {
-    const ftx_table = await worker.table(SCHEMA, {limit: 30000});
-
-    return {
-        ftx: {
-            table: ftx_table,
-            datasource: new FTXDataSource(ftx_table),
-        },
-    };
-};
-
-let DATASOURCE: Record<string, any>;
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Workspace = (): React.ReactElement => {
+    // Construct the <perspective-workspace> and provide it with a table
+    // which will hold the dataset.
     const workspace = useRef<any>(null);
 
     useEffect(() => {
@@ -66,11 +55,10 @@ const Workspace = (): React.ReactElement => {
                 await workspace.current.flush();
             })();
 
-            getData().then((data) => {
-                for (const name in data) {
-                    workspace.current.addTable(name, data[name].table);
-                    DATASOURCE = data[name].datasource;
-                }
+            worker.table(SCHEMA, {limit: 20000}).then((table) => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const datasource = new FTXDataSource(table);
+                workspace.current.addTable("ftx", table);
 
                 workspace.current.addEventListener(
                     "workspace-layout-update",
@@ -83,10 +71,10 @@ const Workspace = (): React.ReactElement => {
                         );
                     }
                 );
-            });
 
-            const progress = document.getElementById("progress");
-            progress?.setAttribute("style", "display:none;");
+                const progress = document.getElementById("progress");
+                progress?.setAttribute("style", "display:none;");
+            });
         }
     });
 
@@ -101,25 +89,9 @@ const Footer = (): React.ReactElement => {
         workspace.restore(default_config);
     };
 
-    const unsubscribe = () => {
-        DATASOURCE.unsubscribe();
-        console.log("finished unsubscribe!");
-    };
-
-    const subscribe = () => {
-        DATASOURCE.subscribe();
-        console.log("finished unsubscribe!");
-    };
-
     return (
         <div className="footer">
             <div className="footer-meta">
-                <button id="unsubscribe" onClick={unsubscribe}>
-                    Unsubscribe
-                </button>
-                <button id="unsubscribe" onClick={subscribe}>
-                    Subscribe
-                </button>
                 <a
                     href="https://github.com/sc1f/perspective-btc-liquidity"
                     target="blank"
@@ -143,8 +115,8 @@ const Footer = (): React.ReactElement => {
                         Perspective
                     </a>
                 </p>
-                <p className="footer-link">Data from</p>
                 <p className="footer-link">
+                    Data from{" "}
                     <a
                         href="https://docs.ftx.com/?javascript#public-channels"
                         target="blank"

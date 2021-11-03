@@ -17,6 +17,7 @@ interface DataSource {
     url: string;
     websocket: WebSocket;
     table: Table;
+    subscribed: boolean;
 
     subscribe(): void;
     unsubscribe(): void;
@@ -26,11 +27,15 @@ interface DataSource {
     send(msg: Record<string, unknown>): void;
 }
 
+/**
+ * A datasource that subscribes to a websocket.
+ */
 abstract class BaseDataSource implements DataSource {
     abstract exchange: string;
     abstract url: string;
     abstract websocket: WebSocket;
     abstract table: Table;
+    abstract subscribed: boolean;
 
     abstract subscribe(): void;
     abstract unsubscribe(): void;
@@ -41,11 +46,15 @@ abstract class BaseDataSource implements DataSource {
     }
 }
 
+/**
+ * Subscribe to the FTX websocket API.
+ */
 export class FTXDataSource extends BaseDataSource {
     exchange: string;
     url: string;
     websocket: WebSocket;
     table: Table;
+    subscribed = false;
 
     constructor(table: Table) {
         super();
@@ -101,10 +110,13 @@ export class FTXDataSource extends BaseDataSource {
                 this.table.update(parsed as any);
             }
         } else if (message_type === "subscribed") {
+            this.subscribed = true;
             console.debug("[FTX] successfully subscribed!");
         } else if (message_type === "unsubscribed") {
+            this.subscribed = false;
             console.debug("[FTX] successfully unsubscribed!");
         } else if (message_type === "partial") {
+            // don't read the initial state of the book, just feed updates.
             return;
         } else {
             throw new Error(`[FTX] Unknown message received: ${message}`);
@@ -135,7 +147,16 @@ export class FTXDataSource extends BaseDataSource {
     }
 }
 
+/**
+ * Subscribe to the Binance Futures websocket API. Though not implemented
+ * in the workspace, initializing the datasource in index.tsx is trivial
+ * and is left as an exercise for the reader. In practice I found that the
+ * datastream from the FTX API was more than granular enough for demo purposes,
+ * considering this isn't a real trading app but a demonstration of
+ * Perspective's handling of fast streaming data.
+ */
 export class BinanceDataSource extends BaseDataSource {
+    subscribed = false;
     exchange: string;
     url: string;
     websocket: WebSocket;
@@ -182,6 +203,7 @@ export class BinanceDataSource extends BaseDataSource {
         }
 
         if (message_type == "bookTicker") {
+            if (!this.subscribed) this.subscribed = true;
             const timestamp = new Date(message.E);
 
             this.table.update([
